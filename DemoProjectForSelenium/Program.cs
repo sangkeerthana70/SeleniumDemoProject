@@ -15,19 +15,19 @@ namespace DemoProjectForSelenium
         }
         //global variable
         //create reference for our browser
-        IWebDriver driver = new ChromeDriver();
+        //IWebDriver driver = new ChromeDriver();
 
         [SetUp]
         public void Initialize()
         {
-           
+            PropertiesCollection.driver = new ChromeDriver();
             //navigate to automationpractice.com
-            driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
+            PropertiesCollection.driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
             //maximize window
-            driver.Manage().Window.Maximize();
+            PropertiesCollection.driver.Manage().Window.Maximize();
 
             //Find the sign-in text box element
-            driver.FindElement(By.ClassName("login")).Click();
+            PropertiesCollection.driver.FindElement(By.ClassName("login")).Click();
 
             Console.WriteLine("Opened URL and clicked Login Page");
  
@@ -36,33 +36,38 @@ namespace DemoProjectForSelenium
         [Test]
         public void ExecuteTest()
         {
+            /*
             //login using email address 
-            SeleniumSetMethods.EnterText(driver, "email", "asangeethu@yahoo.com", "id");
+            SeleniumSetMethods.EnterText(PropertiesCollection.driver, "email", "asangeethu@yahoo.com", "id");
 
             //password
-            SeleniumSetMethods.EnterText(driver, "passwd", "@nuK1978", "id");
+            SeleniumSetMethods.EnterText(PropertiesCollection.driver, "passwd", "@nuK1978", "id");
 
             //click Sign-in
-            SeleniumSetMethods.Click(driver, "SubmitLogin", "id");
+            SeleniumSetMethods.Click(PropertiesCollection.driver, "SubmitLogin", "id");
 
             //enter a search text
-            SeleniumSetMethods.EnterText(driver, "search_query_top", "summer printed dress", "id");
+            SeleniumSetMethods.EnterText(PropertiesCollection.driver, "search_query_top", "summer printed dress", "id");
             //click the search text box
-            SeleniumSetMethods.Click(driver, "submit_search", "name");
+            SeleniumSetMethods.Click(PropertiesCollection.driver, "submit_search", "name");
 
             //hover over a search result
-            SeleniumSetMethods.HoverOnElement(driver, "product_img_link", "class");
+            SeleniumSetMethods.HoverOnElement(PropertiesCollection.driver, "product_img_link", "class");
 
             //search result of a dress item
-            SeleniumSetMethods.Click(driver, "ajax_add_to_cart_button", "class");
+            SeleniumSetMethods.Click(PropertiesCollection.driver, "ajax_add_to_cart_button", "class");
 
             //to solve element not visible error
             //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             System.Threading.Thread.Sleep(5000);
             //proceed to checkout
-            SeleniumSetMethods.Click(driver, "//*[@id=\"layer_cart\"]/div[1]/div[2]/div[4]/a", "xpath");
+            SeleniumSetMethods.Click(PropertiesCollection.driver, "//*[@id=\"layer_cart\"]/div[1]/div[2]/div[4]/a", "xpath");
             Console.WriteLine("Executed Test");
+            */
 
+            //login to application by creating an instance of Authentication class
+            Authentication authentication = new Authentication();
+            authentication.SignIn("asangeethu@yahoo.com", "@nuK1978");
         }
         [TearDown]
         public void CleanUp()
