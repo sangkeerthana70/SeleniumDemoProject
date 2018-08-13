@@ -30,13 +30,14 @@ namespace DemoProjectForSelenium
         public IWebElement btnClick { get; set; }
 
         //method to fill the sign in form
-        public void SignIn(string email, string password)
+        public AccountPage SignIn(string email, string password)
         {
             txtEmail1.SendKeys(email);
             txtPassword.SendKeys(password);
             btnClick.Click();
-        }
 
+            return new AccountPage();
+        }
 
     }
 }
