@@ -67,7 +67,12 @@ namespace DemoProjectForSelenium
 
             //login to application by creating an instance of Authentication class
             Authentication authentication = new Authentication();
-            authentication.SignIn("asangeethu@yahoo.com", "@nuK1978");
+           
+
+            AccountPage accountPage = authentication.SignIn("asangeethu@yahoo.com", "@nuK1978");
+            accountPage.EnterSearchText("printed summer dress");
+            Console.WriteLine("Executed Login page and did a search query in the next POM");
+
         }
         [TearDown]
         public void CleanUp()
