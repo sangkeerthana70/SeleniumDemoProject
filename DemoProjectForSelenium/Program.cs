@@ -74,6 +74,8 @@ namespace DemoProjectForSelenium
             Console.WriteLine("Executed Login page and did a search query in the next POM");
 
         }
+
+       
         [TearDown]
         public void CleanUp()
         {
