@@ -1,0 +1,54 @@
+SELENIUM using CSharp
+
+What is Selenium
+Selenium is a web application testing framework that allows you to write tests in many programming languages like Java, C#, Perl, PHP, Python and Ruby. Selenium deploys on Windows, Linux, and MAC OS. It is an open-source project, released under the Apache 2.0 license.
+Selenium automates browsers. That's it! What you do with that power is entirely up to you. Primarily, it is for automating web applications for testing purposes, but is certainly not limited to just that. It can also be used to scrape data from websites and navigate into a website programmatically which I will be showing you now.
+
+https://github.com/sangkeerthana70/SeleniumDemoProject/blob/master/DemoProjectForSelenium/Program.cs
+
+
+NUNIT
+Nunit is a unit testing framework for all .Net languages. Initially ported from Junit.
+It is written entirely in C# and has been completely redesigned to take advantage of many .NET language features.
+
+ Walkthrough  of my Demo Project
+
+http://automationpractice.com/index.php?controller=authentication&back=my-account
+
+1-writing test method using Nunit. 
+Created three separate methods in Program.cs for Initializing, Executing a test(can have many tests) and Clean up method. There are attributes of Nunit like [SETUP] [TEST] [TEARDOWN]
+which we can use to decorate our test methods and separate out the responsibility of each of these methods.
+
+2-Creating custom methods for Selenium
+Instead of looking for an element in DOM(web Page) through Selenium WebDriver.Find Element method we will create a custom method in a separate class called SeleniumSetMethods.cs.
+In this we will create custom method of controls to set values into the control like Text box, Drop Down box, Check box etc.
+Also I have a separate method to Click on an button and a separate method to hover over an element.
+
+Objective of custom set methods
+The idea is by specifying the element, its type and value in these methods we can check if its behavior is acting in the same way we want it to be which is the whole purpose of automation.
+
+PAGE OBJECT MODEL
+
+POM: Can be looked at as a design pattern, to make automating/testing websites more organized, clean and maintainable, each Page in the application will have its own class. That way, if one site changes, most, if not all of your changes will need to happen in that class. 
+Each class will have all the elements as properties.
+
+As you can observe in my SeleniumSetMethods.cs all we are doing is finding elements and filling values for those elements.
+This is a small script. Script maintenance looks easy. But with time test suite will grow. As you add more and more lines to your code, things become tough.
+The main problem with script maintenance is that if 10 different scripts are using the same page element, with any change in that element, you need to change all 10 scripts. This is time consuming and error prone.
+A better approach to script maintenance is to create a separate class file which would find web elements, fill them or verify them. This class can be reused in all the scripts using that element. In future, if there is a change in the web element, we need to make the change in just 1 class file and not 10 different scripts.
+This approach is called Page Object Model(POM). It helps make the code more readable, maintainable, and reusable.
+
+
+PAGE FACTORY
+Page Factory is an inbuilt Page Object Model concept for Selenium WebDriver but it is very optimized.
+
+Here as well, we follow the concept of separation of Page Object Repository and Test Methods. Additionally, with the help of PageFactory class, we use annotations [FindBy]  to find WebElement. We use initElements method to initialize web elements
+If you use the PageFactory, you can assume that the fields are initialised. If you don't use the PageFactory, then NullPointerExceptions will be thrown if you make the assumption that the fields are already initialized.
+[FindBy] can accept tagName, partialLinkText, name, linkText, id, css, className, xpath as attributes.
+But recently  PageFactory was deprecated and replaced by an attribute called [Obsolete]
+
+Authentication class and Account page classes
+Login page is created as a separate class where all the elements are initialized as IWebElements and once all the elements are found using [FindBy] annotations they have a method called SignIn which is called while executing test and supplied values. This will go and programmatically set the values for login, Once login is successfull this method will return the next page which is the account page.
+
+Conclusion
+Selenium helps in automating web browsers with the help of Nunit where we write out test codes. In mutiple page application using Selenium helps automation much easier through POM. 
