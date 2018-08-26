@@ -17,10 +17,10 @@ namespace DemoProjectForSelenium
         }
         //identify the search text box element by the id value as search_query_top
         [FindsBy(How = How.Id, Using = "search_query_top")]
-        public IWebElement txtSearch { get; set; }
+        public IWebElement TxtSearch { get; set; }
         //identify the search button with name value as submit_search
         [FindsBy(How = How.Name, Using = "submit_search")]
-        public IWebElement btnClick { get; set; }
+        public IWebElement BtnClick { get; set; }
 
         /*
         //shopping cart
@@ -41,8 +41,8 @@ namespace DemoProjectForSelenium
         //method to enter a search text in the search box and click search
         public void EnterSearchText(string searchTxt)
         {
-            txtSearch.SendKeys(searchTxt);
-            btnClick.Click();
+            TxtSearch.SendKeys(searchTxt);
+            BtnClick.Click();
         }
     }
 }
