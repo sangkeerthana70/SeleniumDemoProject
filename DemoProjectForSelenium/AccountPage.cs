@@ -22,27 +22,13 @@ namespace DemoProjectForSelenium
         [FindsBy(How = How.Name, Using = "submit_search")]
         public IWebElement BtnClick { get; set; }
 
-        /*
-        //shopping cart
-        [FindsBy(How = How.ClassName, Using = "shopping_cart")]
-        public IWebElement shpCart { get; set; }
-
-        //women tab
-        [FindsBy(How = How.ClassName, Using = "sf-with-ul")]
-        public IWebElement vmenTab { get; set; }
-        //dresses
-        [FindsBy(How = How.ClassName, Using = "sf-with-ul")]
-        public IWebElement dressTab { get; set; }
-        //T-shirts
-        [FindsBy(How = How.LinkText, Using = "http://automationpractice.com/index.php?id_category=5&amp;controller=category")]
-        public IWebElement tshirtTab { get; set; }
-        */
-
         //method to enter a search text in the search box and click search
-        public void EnterSearchText(string searchTxt)
+        public SearchResultsPage EnterSearchText(string searchTxt)
         {
             TxtSearch.SendKeys(searchTxt);
             BtnClick.Click();
+
+            return new SearchResultsPage();
         }
     }
 }
