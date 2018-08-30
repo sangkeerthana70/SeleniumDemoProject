@@ -22,8 +22,8 @@ namespace DemoProjectForSelenium
 
         public void HoverOnElement()
         {
-            Actions action = new Actions(driver);
-            action.MoveToElement(webelement).Perform();
+            Actions action = new Actions(PropertiesCollection.driver);
+            action.MoveToElement(IWebElement).Perform();
         }
 
     }   
