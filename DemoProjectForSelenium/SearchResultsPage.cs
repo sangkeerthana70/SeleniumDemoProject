@@ -20,11 +20,25 @@ namespace DemoProjectForSelenium
         [FindsBy(How = How.ClassName, Using = "product_img_link")]
         public IWebElement SearchResult { get; set; }
 
-        public void HoverOnElement()
+        [FindsBy(How = How.ClassName, Using = "ajax_add_to_cart_button")]
+        public IWebElement AddToCartButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"layer_cart\"]/div[1]/div[2]/div[4]/a")]
+        public IWebElement ProceedToCheckOutButton { get; set; }
+
+        //hover on search item and add to cart
+        public void AddToCart()
         {
             Actions action = new Actions(PropertiesCollection.driver);
-            action.MoveToElement(IWebElement).Perform();
+            action.MoveToElement(SearchResult).Perform();
+            
+            AddToCartButton.Click();
+            //manage element not visible
+            System.Threading.Thread.Sleep(5000);
+            ProceedToCheckOutButton.Click();
         }
+
+        
 
     }   
 }
