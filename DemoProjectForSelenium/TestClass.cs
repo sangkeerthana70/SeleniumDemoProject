@@ -37,7 +37,13 @@ namespace DemoProjectForSelenium
 
             AccountPage accountPage = authentication.SignIn("asangeethu@yahoo.com", "@nuK1978");
             SearchResultsPage searchResults = accountPage.EnterSearchText("printed summer dress");
+
             Console.WriteLine("Executed Login page and did a search query in the next POM");
+
+            searchResults.AddToCart();
+            Console.WriteLine("Hover on search result and added item to cart");
+
+
         }
 
              
@@ -55,6 +61,8 @@ namespace DemoProjectForSelenium
             Console.WriteLine(loginError);
             Assert.IsTrue(loginError);
         }
+
+
 
 
         [TearDown]
